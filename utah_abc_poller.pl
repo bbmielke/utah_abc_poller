@@ -32,7 +32,7 @@ if(!$tx->success) {
     die "Connection error: $err->{message}";
 }
 
-#say $tx->success->body;
+#say STDERR $tx->success->body;
 
 my $dom = $tx->res->dom;
 
@@ -48,7 +48,7 @@ for my $code (@{$config->{codes}}) {
     $names{'ctl00$ContentPlaceHolderBody$tbCscCode'} = $code;
     $tx = $ua->post($config->{url} => form => \%names);
 
-    say $tx->success->body if($opts->{debug});
+    say STDERR $tx->success->body if($opts->{debug});
 
     $dom = $tx->res->dom;
 
